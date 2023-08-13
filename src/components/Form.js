@@ -8,13 +8,20 @@ export default function Form() {
     const [EmailId, setEmailId] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    // give "Invalid first name" error message if first name is not valid
-    // give "Invalid last name" error message if first name is not valid
-    // give "Invalid password" error message if password is not valid
-    // give "Invalid email address" error message if email address is not valid
-
     const validateForm = () => {
+         // Reset error message before validation
+         setErrorMessage("");
 
+         // Validation Conditions
+         if (!/^[A-Z][a-z]*$/.test(FirstName)) {
+             setErrorMessage("Invalid first name");
+         } else if (!/^[A-Z][a-z]*$/.test(LastName)) {
+             setErrorMessage("Invalid last name");
+         } else if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}/.test(Password)) {
+             setErrorMessage("Invalid password");
+         } else if (!/^[A-Za-z0-9+_.-]+@([A-Za-z0-9]+\.)+[A-Za-z]{2,}$/.test(EmailId)) {
+             setErrorMessage("Invalid email address");
+         }
     };
 
 
